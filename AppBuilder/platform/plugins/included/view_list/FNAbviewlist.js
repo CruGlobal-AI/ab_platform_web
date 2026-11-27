@@ -1,4 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNAbviewlistComponent from "./FNAbviewlistComponent.js";
 
 // FNAbviewlist Web
@@ -6,11 +5,10 @@ import FNAbviewlistComponent from "./FNAbviewlistComponent.js";
 //
 export default function FNAbviewlist({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
    const ABAbviewlistComponent = FNAbviewlistComponent({
       ABViewComponentPlugin,
    });
@@ -87,7 +85,7 @@ export default function FNAbviewlist({
          let DC = this.datacollection;
          if (!DC) {
             this.warningsMessage(
-               `can't resolve it's datacollection[${this.settings.dataviewID}]`,
+               `can't resolve it's datacollection[${this.settings.dataviewID}]`
             );
          }
       }

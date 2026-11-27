@@ -197,12 +197,6 @@ class Bootstrap extends EventEmitter {
          networkIsSlow
       );
 
-      let additionalPluginResources = {};
-      this._plugins.forEach((p) => {
-         if (typeof p.pluginResources === "function") {
-            Object.assign(additionalPluginResources, p.pluginResources());
-         }
-      });
       const loadPlugin = async (purl) => {
          // Helper to load script with proper MIME type headers
          const loadScriptWithMimeType = async (url) => {
@@ -372,7 +366,7 @@ class Bootstrap extends EventEmitter {
          }
          if (typeof registerFn === "function") {
             // Register with the ABFactory core (expects a function taking PluginAPI)
-            this.AB.pluginRegister(registerFn, additionalPluginResources);
+            this.AB.pluginRegister(registerFn);
          } else {
             console.warn("Plugin did not export a function:", purl);
          }

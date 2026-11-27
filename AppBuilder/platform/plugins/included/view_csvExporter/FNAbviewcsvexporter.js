@@ -1,19 +1,16 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNAbviewcsvexporterComponent from "./FNAbviewcsvexporterComponent.js";
+
 
 // FNAbviewcsvexporter Web
 // A web side import for an ABView.
 //
 export default function FNAbviewcsvexporter({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
-   const ABAbviewcsvexporterComponent = FNAbviewcsvexporterComponent({
-      ABViewComponentPlugin,
-   });
+   const ABAbviewcsvexporterComponent = FNAbviewcsvexporterComponent({ ABViewComponentPlugin });
 
    const ABViewCSVExporterDefaults = {
       key: "csvExporter", // unique key identifier for this ABViewForm
@@ -37,7 +34,7 @@ export default function FNAbviewcsvexporter({
             values,
             application,
             parent,
-            defaultValues || ABViewCSVExporterDefaults,
+            defaultValues || ABViewCSVExporterDefaults
          );
       }
 
@@ -73,33 +70,37 @@ export default function FNAbviewcsvexporter({
          // convert from "0" => 0
          this.settings.width = parseInt(
             values.settings.width ||
-               ABViewCSVExporterPropertyComponentDefaults.width,
+            ABViewCSVExporterPropertyComponentDefaults.width
          );
 
          this.settings.hiddenFieldIds =
             values.settings.hiddenFieldIds ||
             ABViewCSVExporterPropertyComponentDefaults.hiddenFieldIds;
       }
-   }
+   };
 
    return class ABViewCSVExporter extends ABViewCSVExporterCore {
+
       /**
-       * @method getPluginKey
-       * return the plugin key for this view.
-       * @return {string} plugin key
-       */
+             * @method getPluginKey
+             * return the plugin key for this view.
+             * @return {string} plugin key
+             */
       static getPluginKey() {
          return this.common().key;
       }
 
       /**
-       * @method component()
-       * return a UI component based upon this view.
-       * @return {obj} UI component
-       */
+             * @method component()
+             * return a UI component based upon this view.
+             * @return {obj} UI component
+             */
       component(parentId) {
          return new ABAbviewcsvexporterComponent(this, parentId);
       }
+
+
+
 
       warningsEval() {
          super.warningsEval();
@@ -107,9 +108,11 @@ export default function FNAbviewcsvexporter({
          let DC = this.datacollection;
          if (!DC) {
             this.warningsMessage(
-               `can't resolve it's datacollection[${this.settings.dataviewID}]`,
+               `can't resolve it's datacollection[${this.settings.dataviewID}]`
             );
          }
       }
    };
+
 }
+

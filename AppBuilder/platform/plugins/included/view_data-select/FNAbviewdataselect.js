@@ -1,4 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNAbviewdataselectComponent from "./FNAbviewdataselectComponent.js";
 
 // FNAbviewdataselect Web
@@ -6,11 +5,10 @@ import FNAbviewdataselectComponent from "./FNAbviewdataselectComponent.js";
 //
 export default function FNAbviewdataselect({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
    const ABAbviewdataselectComponent = FNAbviewdataselectComponent({
       ABViewComponentPlugin,
    });
@@ -86,13 +84,13 @@ export default function FNAbviewdataselect({
          let DC = this.datacollection;
          if (!DC) {
             this.warningsMessage(
-               `can't resolve it's datacollection[${this.settings.dataviewID}]`,
+               `can't resolve it's datacollection[${this.settings.dataviewID}]`
             );
          } else {
             if (this.settings.viewType == "connected") {
                const object = DC.datasource;
                const [field] = object.fields(
-                  (f) => f.columnName === this.settings.field,
+                  (f) => f.columnName === this.settings.field
                );
                if (!field) {
                   this.warningsMessage(`can't resolve field reference`);
