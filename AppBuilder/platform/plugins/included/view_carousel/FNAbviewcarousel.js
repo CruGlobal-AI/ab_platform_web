@@ -1,6 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
-import FNABViewPropertyFilterData from "../view_core/FNABViewPropertyFilterData.js";
-import FNABViewPropertyLinkPage from "../view_core/FNABViewPropertyLinkPage.js";
 import FNAbviewcarouselComponent from "./FNAbviewcarouselComponent.js";
 
 // FNAbviewcarousel Web
@@ -8,18 +5,11 @@ import FNAbviewcarouselComponent from "./FNAbviewcarouselComponent.js";
 //
 export default function FNAbviewcarousel({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
-   ABUIPlugin,
+   ABViewPropertyFilterData,
+   ABViewPropertyLinkPage,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-   const ABViewPropertyFilterData = FNABViewPropertyFilterData({ ABUIPlugin });
-   const ABViewPropertyLinkPage = FNABViewPropertyLinkPage({
-      ABUIPlugin,
-      ABViewPlugin,
-      ABViewComponentPlugin,
-   });
-
    const ABAbviewcarouselComponent = FNAbviewcarouselComponent({
       ABViewComponentPlugin,
    });
@@ -59,7 +49,6 @@ export default function FNAbviewcarousel({
    function parseOrDefault(_this, key) {
       try {
          _this.settings[key] = JSON.parse(_this.settings[key]);
-         // eslint-disable-next-line no-unused-vars
       } catch (e) {
          _this.settings[key] = ABViewCarouselPropertyComponentDefaults[key];
       }
@@ -174,7 +163,7 @@ export default function FNAbviewcarousel({
          if (this.__filterHelper == null)
             this.__filterHelper = new ABViewPropertyFilterData(
                this.AB,
-               this.idBase,
+               this.idBase
             );
 
          return this.__filterHelper;
@@ -193,7 +182,7 @@ export default function FNAbviewcarousel({
          let field = this.imageField;
          if (!field) {
             this.warningsMessage(
-               `can't resolve image field[${this.settings.field}]`,
+               `can't resolve image field[${this.settings.field}]`
             );
          }
       }

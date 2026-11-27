@@ -1,12 +1,9 @@
 import FNAbviewdataviewComponent from "./FNAbviewdataviewComponent.js";
 import FNABViewDetail from "../view_detail/FNAbviewdetail.js";
-import FNAbviewcontainerComponent from "../view_viewcontainer/FNAbviewcontainerComponent.js";
-import FNABViewPropertyLinkPage from "../view_core/FNABViewPropertyLinkPage.js";
 
 // FNAbviewdataview Web
 // A web side import for an ABView.
 //
-
 export default function FNAbviewdataview(API) {
    const {
       AB,
@@ -14,7 +11,6 @@ export default function FNAbviewdataview(API) {
       ABViewContainerComponent,
       ABViewPropertyLinkPage,
    } = API;
-
 
    const ABAbviewdataviewComponent = FNAbviewdataviewComponent({
       AB,
@@ -80,7 +76,7 @@ export default function FNAbviewdataview(API) {
 
          this.settings.xCount = parseInt(
             this.settings.xCount ??
-              ABViewDataviewPropertyComponentDefaults.xCount
+            ABViewDataviewPropertyComponentDefaults.xCount
          );
          this.settings.detailsPage =
             this.settings.detailsPage ??

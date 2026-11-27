@@ -1,4 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNAbviewganttComponent from "./FNAbviewganttComponent.js";
 
 
@@ -7,11 +6,10 @@ import FNAbviewganttComponent from "./FNAbviewganttComponent.js";
 //
 export default function FNAbviewgantt({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
    const ABAbviewganttComponent = FNAbviewganttComponent({ ABViewComponentPlugin });
 
    const ABViewGanttPropertyComponentDefaults = {

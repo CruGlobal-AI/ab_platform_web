@@ -1,6 +1,6 @@
-import ABUIPlugin from "./ABUIPlugin.js";
+import ABClassUIPlugin from "./ABClassUIPlugin.js";
 
-export default class ABViewEditorPlugin extends ABUIPlugin {
+export default class ABViewEditorPlugin extends ABClassUIPlugin {
    constructor(view, base = "view_editor", ids = {}) {
       // view: {ABView} The ABView instance this editor is for
       // base: {string} unique base id reference
