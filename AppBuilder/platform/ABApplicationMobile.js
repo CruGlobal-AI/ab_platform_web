@@ -27,6 +27,19 @@ export default class ABClassApplicationMobile extends ABApplicationMobileCore {
       return newPage;
    }
 
+   /**
+    * @method viewAll()
+    * Return only the mobile view classes. The web ABApplication.viewAll()
+    * also adds the plugin views from ClassManager (grid, chart, kanban...),
+    * which are web widgets. Without this override they show up in the PWA
+    * "add widget" list and get saved onto mobile pages (eg key "grid").
+    * @param {fn} fn  filter
+    * @return {array}
+    */
+   viewAll(fn = () => true) {
+      return this.ViewManager.allViews(fn);
+   }
+
    async setPageDefault(page) {
       if (this.pageDefault != page.id) {
          let oldPage = this.pageByID(this.pageDefault, true);
