@@ -71,9 +71,31 @@ jobs:
           resource: http://localhost:8080
           timeout: 300000
 
+      - name: DEBUG before Cypress
+        if: always()
+        working-directory: ./ab
+        run: |
+          echo "CYPRESS_STACK=$(grep -E '^CYPRESS_STACK=' .env | cut -d= -f2-)"
+          docker ps --format '{{.Names}}  {{.Image}}' | grep -i -E "db|migration" || true
+          echo "(no reset)"
+          ID=$(docker ps | grep "$(grep -E '^CYPRESS_STACK=' .env | cut -d= -f2-)_db" | awk '{print $1}')
+          echo "db container: $ID"
+          docker exec $ID sh -c 'mysql -u"$DB_USER" -p"$DB_PASSWORD" -e "SHOW TABLES FROM \`appbuilder-$TENANT\` LIKE \"SITE_PLUGIN%\"; SELECT \`key\`,\`value\` FROM \`appbuilder-$TENANT\`.SITE_CONFIG WHERE \`key\`=\"migration-last-patch\";"' 2>&1 | grep -v "Using a password"
+
       - name: Run Cypress Tests
         run: npm run test:e2e:app -- --browser chrome
         working-directory: ./ab
+
+      - name: DEBUG after Cypress (run testReset.sh)
+        if: always()
+        working-directory: ./ab
+        run: |
+          echo "CYPRESS_STACK=$(grep -E '^CYPRESS_STACK=' .env | cut -d= -f2-)"
+          docker ps --format '{{.Names}}  {{.Image}}' | grep -i -E "db|migration" || true
+          echo "===== testReset.sh output ====="; bash -x testReset.sh 2>&1 | tail -60; echo "exit=${PIPESTATUS[0]}"
+          ID=$(docker ps | grep "$(grep -E '^CYPRESS_STACK=' .env | cut -d= -f2-)_db" | awk '{print $1}')
+          echo "db container: $ID"
+          docker exec $ID sh -c 'mysql -u"$DB_USER" -p"$DB_PASSWORD" -e "SHOW TABLES FROM \`appbuilder-$TENANT\` LIKE \"SITE_PLUGIN%\"; SELECT \`key\`,\`value\` FROM \`appbuilder-$TENANT\`.SITE_CONFIG WHERE \`key\`=\"migration-last-patch\";"' 2>&1 | grep -v "Using a password"
 
       - uses: actions/upload-artifact@v4
         if: failure()
