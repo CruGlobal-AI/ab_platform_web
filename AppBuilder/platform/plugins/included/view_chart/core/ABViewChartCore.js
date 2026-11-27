@@ -1,8 +1,4 @@
-import FNABViewWidgetPlugin from "../../view_viewwidget/FNAbviewwidget.js";
-
-export default function FNABViewChartCore({ ABViewPlugin }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
+export default function FNABViewChartCore({ ABViewWidgetPlugin }) {
    const ABViewChartPropertyComponentDefaults = {
       dataviewID: "",
       columnValue: "",

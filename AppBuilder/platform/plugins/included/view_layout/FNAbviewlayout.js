@@ -1,5 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
-import FNABViewContainer from "../view_viewcontainer/FNAbviewcontainer.js";
 import FNAbviewlayoutComponent from "./FNAbviewlayoutComponent.js";
 
 // FNAbviewlayout Web
@@ -7,15 +5,10 @@ import FNAbviewlayoutComponent from "./FNAbviewlayoutComponent.js";
 //
 export default function FNAbviewlayout({
    /*AB,*/
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-   const ABViewContainer = FNABViewContainer({
-      ABViewPlugin,
-      ABViewComponentPlugin,
-   });
-
    const ABAbviewlayoutComponent = FNAbviewlayoutComponent({
       ABViewComponentPlugin,
    });
@@ -60,8 +53,8 @@ export default function FNAbviewlayout({
                {
                   key: ABViewContainer.common().key,
                },
-               this,
-            ),
+               this
+            )
          );
       }
 

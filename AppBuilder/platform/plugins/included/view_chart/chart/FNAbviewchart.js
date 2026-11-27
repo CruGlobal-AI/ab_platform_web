@@ -1,5 +1,4 @@
-import FNABViewContainer from "../../view_viewcontainer/FNAbviewcontainer.js";
-import FNAbviewcontainerComponent from "../../view_viewcontainer/FNAbviewcontainerComponent.js";
+
 import FNAbviewchartComponent from "./FNAbviewchartComponent.js";
 
 // FNAbviewchart Web
@@ -7,18 +6,9 @@ import FNAbviewchartComponent from "./FNAbviewchartComponent.js";
 //
 export default function FNAbviewchart({
    AB,
-   ABViewPlugin,
-   ABViewComponentPlugin,
+   ABViewContainerComponent,
+   ABViewContainer,
 }) {
-   const ABViewContainer = FNABViewContainer({
-      ABViewPlugin,
-      ABViewComponentPlugin,
-   });
-
-   const ABViewContainerComponent = FNAbviewcontainerComponent({
-      ABViewComponentPlugin,
-   });
-
    const ABAbviewchartComponent = FNAbviewchartComponent({
       AB,
       ABViewContainerComponent,
@@ -46,12 +36,7 @@ export default function FNAbviewchart({
    // this needs to be a class that extends ABViewContainer
    class ABViewChartCore extends ABViewContainer {
       constructor(values, application, parent, defaultValues) {
-         super(
-            values,
-            application,
-            parent,
-            defaultValues || ABViewChartDefaults,
-         );
+         super(values, application, parent, defaultValues || ABViewChartDefaults);
       }
 
       static getPluginType() {
@@ -96,12 +81,12 @@ export default function FNAbviewchart({
 
          this.settings.isPercentage = parseInt(
             this.settings.isPercentage ??
-               ABViewChartPropertyComponentDefaults.isPercentage,
+            ABViewChartPropertyComponentDefaults.isPercentage
          );
 
          this.settings.showLabel = parseInt(
             this.settings.showLabel ??
-               ABViewChartPropertyComponentDefaults.showLabel,
+            ABViewChartPropertyComponentDefaults.showLabel
          );
 
          this.settings.labelPosition =
@@ -110,16 +95,16 @@ export default function FNAbviewchart({
 
          this.settings.labelWidth = parseInt(
             this.settings.labelWidth ??
-               ABViewChartPropertyComponentDefaults.labelWidth,
+            ABViewChartPropertyComponentDefaults.labelWidth
          );
 
          this.settings.height = parseInt(
-            this.settings.height ?? ABViewChartPropertyComponentDefaults.height,
+            this.settings.height ?? ABViewChartPropertyComponentDefaults.height
          );
 
          this.settings.multipleSeries = parseInt(
             this.settings.multipleSeries ??
-               ABViewChartPropertyComponentDefaults.multipleSeries,
+            ABViewChartPropertyComponentDefaults.multipleSeries
          );
 
          this.translate(this, this, ["chartLabel"]);
@@ -165,7 +150,7 @@ export default function FNAbviewchart({
 
          return obj.fieldByID(this.settings.columnValue2);
       }
-   }
+   };
 
    return class ABViewChart extends ABViewChartCore {
       /**
@@ -265,8 +250,8 @@ export default function FNAbviewchart({
                         valueCol.object,
                         valueCol.settings.formula,
                         item,
-                        valueCol.settings.decimalPlaces,
-                     ),
+                        valueCol.settings.decimalPlaces
+                     )
                   );
 
                   break;
@@ -367,14 +352,14 @@ export default function FNAbviewchart({
          let labelField = this.labelField();
          if (!labelField) {
             this.warningsMessage(
-               `can't resolve label field[${this.settings.columnLabel}]`,
+               `can't resolve label field[${this.settings.columnLabel}]`
             );
          }
 
          let valueField = this.valueField();
          if (!valueField) {
             this.warningsMessage(
-               `can't resolve value field[${this.settings.columnValue}]`,
+               `can't resolve value field[${this.settings.columnValue}]`
             );
          }
       }
