@@ -6,3 +6,10 @@ updates:
         interval: "daily"
      allow:
         - dependency-name: "@digiserve/ab-utils"
+   - package-ecosystem: "github-actions"
+     directory: "/"
+     schedule:
+        interval: "weekly"
+     groups:
+        github-actions:
+           patterns: ["*"]

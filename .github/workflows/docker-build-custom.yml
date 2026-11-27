@@ -23,14 +23,14 @@ jobs:
       packages: write
     steps:
         - name: Pull code
-          uses: actions/checkout@v3
+          uses: actions/checkout@v7
           with:
             path: ab_platform_web
             submodules: true
             ref: ${{ inputs.ref }}
 
         - name: Pull ab_service_web
-          uses: actions/checkout@v3
+          uses: actions/checkout@v7
           with:
             path: web
             repository: ${{ github.repository_owner }}/ab_service_web
