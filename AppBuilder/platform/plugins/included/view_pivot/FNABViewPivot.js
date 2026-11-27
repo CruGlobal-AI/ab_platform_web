@@ -1,16 +1,14 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNABViewPivotComponent from "./FNABViewPivotComponent.js";
 
 // FNAbviewpivot Web
 // A web side import for an ABView.
 //
 export default function FNABViewPivot({
-   AB,
-   ABViewPlugin,
+   /*AB,*/
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
    const ABAbviewpivotComponent = FNABViewPivotComponent({
       AB,
       ABViewComponentPlugin,
@@ -61,21 +59,21 @@ export default function FNABViewPivot({
          // Convert to boolean
          this.settings.removeMissed = JSON.parse(
             this.settings.removeMissed ||
-               ABViewPivotPropertyComponentDefaults.removeMissed,
+            ABViewPivotPropertyComponentDefaults.removeMissed
          );
          this.settings.totalColumn = JSON.parse(
             this.settings.totalColumn ||
-               ABViewPivotPropertyComponentDefaults.totalColumn,
+            ABViewPivotPropertyComponentDefaults.totalColumn
          );
          this.settings.separateLabel = JSON.parse(
             this.settings.separateLabel ||
-               ABViewPivotPropertyComponentDefaults.separateLabel,
+            ABViewPivotPropertyComponentDefaults.separateLabel
          );
          this.settings.min = JSON.parse(
-            this.settings.min || ABViewPivotPropertyComponentDefaults.min,
+            this.settings.min || ABViewPivotPropertyComponentDefaults.min
          );
          this.settings.max = JSON.parse(
-            this.settings.max || ABViewPivotPropertyComponentDefaults.max,
+            this.settings.max || ABViewPivotPropertyComponentDefaults.max
          );
 
          if (
@@ -86,7 +84,7 @@ export default function FNABViewPivot({
 
          // "0" -> 0
          this.settings.height = parseInt(
-            this.settings.height || ABViewPivotPropertyComponentDefaults.height,
+            this.settings.height || ABViewPivotPropertyComponentDefaults.height
          );
       }
 
@@ -148,7 +146,7 @@ export default function FNABViewPivot({
          let DC = this.datacollection;
          if (!DC) {
             this.warningsMessage(
-               `can't resolve it's datacollection[${this.settings.dataviewID}]`,
+               `can't resolve it's datacollection[${this.settings.dataviewID}]`
             );
          }
       }

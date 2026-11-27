@@ -1,4 +1,3 @@
-import FNABViewWidgetPlugin from "../view_viewwidget/FNAbviewwidget.js";
 import FNAbviewpdfimporterComponent from "./FNAbviewpdfimporterComponent.js";
 
 // FNAbviewpdfimporter Web
@@ -6,12 +5,11 @@ import FNAbviewpdfimporterComponent from "./FNAbviewpdfimporterComponent.js";
 //
 export default function FNAbviewpdfimporter({
    /* AB, */
-   ABViewPlugin,
+   ABViewWidgetPlugin,
    ABViewComponentPlugin,
+   ABViewContainer,
    ABViewRuleListFormSubmitRules,
 }) {
-   const ABViewWidgetPlugin = FNABViewWidgetPlugin({ ABViewPlugin });
-
    const ABAbviewpdfimporterComponent = FNAbviewpdfimporterComponent({
       ABViewComponentPlugin,
    });
